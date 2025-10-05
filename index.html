@@ -3,91 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Portal</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Redwan & Tanny's Wedding Reception</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f9f5f0 0%, #f0e6d6 100%);
+            color: #5a4a42;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .bg-overlay {
-            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
-                        url('https://i.ibb.co.com/pjGJY3Yh/unnamed.png');
-            background-size: cover;
-            background-position: center;
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
         }
-        .button-box {
+        
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+            position: relative;
+        }
+        
+        .couple-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .couple-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #e8d5c4;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .couple-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .heart-decoration {
+            position: absolute;
+            bottom: -15px;
+            right: -10px;
+            background: #e8d5c4;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .heart-decoration i {
+            color: #b8866b;
+            font-size: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #b8866b;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #8c7b6e;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .divider {
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #e8d5c4, transparent);
+            margin: 20px auto;
+        }
+        
+        .date-section {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(232, 213, 196, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .date-text {
+            font-size: 1.4rem;
+            color: #b8866b;
+            font-weight: 500;
+        }
+        
+        .invitation-text {
+            text-align: center;
+            font-size: 1.15rem;
+            margin: 30px 0;
+            padding: 0 20px;
+            line-height: 1.8;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin: 50px 0;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #e8d5c4 0%, #d4bfab 100%);
+            color: #5a4a42;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
         }
-        .button-box:hover {
+        
+        .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #d4bfab 0%, #e8d5c4 100%);
         }
-        .transparent-box {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        
+        .btn i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .location-btn {
+            background: linear-gradient(135deg, #b8866b 0%, #a57254 100%);
+            color: white;
+        }
+        
+        .video-btn {
+            background: linear-gradient(135deg, #d4a5a5 0%, #c18f8f 100%);
+            color: white;
+        }
+        
+        .shoots-btn {
+            background: linear-gradient(135deg, #a5b8d4 0%, #8fa3c1 100%);
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 40px;
+            border-top: 1px solid #e8d5c4;
+            color: #8c7b6e;
+            font-size: 0.95rem;
+            background: rgba(232, 213, 196, 0.3);
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(232, 213, 196, 0.5);
+            transform: rotate(45deg);
+            opacity: 0;
+        }
+        
+        .heart:before, .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: rgba(232, 213, 196, 0.5);
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+        
+        @media (min-width: 768px) {
+            .button-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .btn {
+                min-width: 220px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .couple-image {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .btn {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
-<body class="bg-overlay flex items-center justify-center min-h-screen p-4">
-
-    <!-- Main Container - Now Transparent -->
-    <div class="transparent-box p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
-        <h1 class="text-2xl font-semibold text-gray-800 mb-2">Welcome to Our Event</h1>
-        <p class="text-gray-700 mb-6">
-            Explore venue location, photo shoots, and event videos.
-        </p>
+<body>
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <div class="container">
+        <header>
+            <div class="couple-container">
+                <img src="https://raw.githubusercontent.com/from-tanim/tanny-s-wedding/refs/heads/main/Assets/Tanny's%20aqd%2031-40%20screenshot.png" alt="Redwan & Tanny" class="couple-image">
+                <div class="heart-decoration">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+            <h1>Redwan & Tanny</h1>
+            <div class="subtitle">getting married!</div>
+            <div class="divider"></div>
+        </header>
         
-        <!-- Button Boxes -->
-        <div class="mt-8 grid grid-cols-3 gap-4">
-            <button id="locationBtn" class="button-box bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition-colors flex flex-col items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span class="text-sm">Location</span>
-            </button>
-            <button id="shootsBtn" class="button-box bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg transition-colors flex flex-col items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span class="text-sm">Shoots</span>
-            </button>
-            <button id="videosBtn" class="button-box bg-purple-500 hover:bg-purple-600 text-white p-3 rounded-lg transition-colors flex flex-col items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                <span class="text-sm">Videos</span>
-            </button>
+        <section class="date-section">
+            <p class="date-text">Saturday, October 25, 2025</p>
+            <p>The King of Cox</p>
+        </section>
+        
+        <section class="invitation-text">
+            <p>With immense joy and gratitude, we invite you to celebrate our wedding reception</p>
+            <p>Join us as we begin our journey together as husband and wife</p>
+        </section>
+        
+        <div class="button-container">
+            <a href="https://maps.app.goo.gl/1MvKyzxsJDyYwkRF7" target="https://maps.app.goo.gl/1MvKyzxsJDyYwkRF7" class="btn location-btn">
+                <i class="fas fa-map-marker-alt"></i> Location
+            </a>
+            <a href="https://www.youtube.com/watch?v=tmep8XuK8Qg" target="https://www.youtube.com/watch?v=tmep8XuK8Qg" class="btn video-btn">
+                <i class="fas fa-video"></i> Video
+            </a>
+            <a href="https://t.me/+HQSAiUyQSLk3MmU1" target="https://t.me/+HQSAiUyQSLk3MmU1" class="btn shoots-btn">
+                <i class="fas fa-camera"></i> Shoots
+            </a>
         </div>
         
-        <!-- Copyright -->
-        <div class="mt-8 pt-4 border-t border-gray-300">
-            <p class="text-gray-700 text-sm">From-Tanim © 2025</p>
-        </div>
+        <footer>
+            <p>Copyright of From-Tanim © 2025</p>
+        </footer>
     </div>
 
-    <!-- JavaScript for button interactions -->
     <script>
-        document.getElementById('locationBtn').addEventListener('click', function() {
-            // You can add your Google Maps URL here
-            window.location.href = 'https://maps.app.goo.gl/1MvKyzxsJDyYwkRF7';
-        });
+        // Create floating hearts animation
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartsCount = 15;
+            
+            for (let i = 0; i < heartsCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random position
+                const left = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = 10 + Math.random() * 10;
+                
+                heart.style.left = `${left}vw`;
+                heart.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                container.appendChild(heart);
+            }
+            
+            // Add CSS for animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float {
+                    0% {
+                        transform: translateY(100vh) rotate(45deg);
+                        opacity: 0;
+                    }
+                    10% {
+                        opacity: 0.7;
+                    }
+                    90% {
+                        opacity: 0.7;
+                    }
+                    100% {
+                        transform: translateY(-100px) rotate(45deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
         
-        document.getElementById('shootsBtn').addEventListener('click', function() {
-            // Add your photo gallery URL here
-            alert('https://t.me/+HQSAiUyQSLk3MmU1');
-            // window.location.href = 'YOUR_PHOTO_GALLERY_URL';
-        });
-        
-        document.getElementById('videosBtn').addEventListener('click', function() {
-            // Add your video gallery URL here
-            alert('https://www.youtube.com/watch?v=tmep8XuK8Qg');
-            // window.location.href = 'YOUR_VIDEO_GALLERY_URL';
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
         });
     </script>
-
 </body>
 </html>
