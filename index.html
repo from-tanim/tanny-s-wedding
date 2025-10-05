@@ -112,6 +112,59 @@
             font-weight: 500;
         }
         
+        .countdown-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .countdown-title {
+            font-size: 1.5rem;
+            color: #b8866b;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+        
+        .countdown-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #b8866b;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #8c7b6e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
         .invitation-text {
             text-align: center;
             font-size: 1.15rem;
@@ -242,6 +295,16 @@
                 padding: 15px 25px;
                 font-size: 1.1rem;
             }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+                width: 70px;
+                height: 70px;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+            }
         }
     </style>
 </head>
@@ -266,19 +329,41 @@
             <p>The King of Cox</p>
         </section>
         
+        <div class="countdown-container">
+            <h3 class="countdown-title">Counting Down to Our Special Day</h3>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+        
         <section class="invitation-text">
             <p>With immense joy and gratitude, we invite you to celebrate our wedding reception</p>
             <p>Join us as we begin our journey together as husband and wife</p>
         </section>
         
         <div class="button-container">
-            <a href="https://maps.app.goo.gl/1MvKyzxsJDyYwkRF7" target="https://maps.app.goo.gl/1MvKyzxsJDyYwkRF7" class="btn location-btn">
+            <a href="https://maps.app.goo.gl/1MvKyzxsJDyYwkRF7" target="_blank" class="btn location-btn">
                 <i class="fas fa-map-marker-alt"></i> Location
             </a>
-            <a href="https://www.youtube.com/watch?v=tmep8XuK8Qg" target="https://www.youtube.com/watch?v=tmep8XuK8Qg" class="btn video-btn">
+            <a href="https://www.youtube.com/watch?v=tmep8XuK8Qg" target="_blank" class="btn video-btn">
                 <i class="fas fa-video"></i> Video
             </a>
-            <a href="https://t.me/+HQSAiUyQSLk3MmU1" target="https://t.me/+HQSAiUyQSLk3MmU1" class="btn shoots-btn">
+            <a href="https://t.me/+HQSAiUyQSLk3MmU1" target="_blank" class="btn shoots-btn">
                 <i class="fas fa-camera"></i> Shoots
             </a>
         </div>
@@ -332,9 +417,34 @@
             document.head.appendChild(style);
         }
         
+        // Countdown timer function
+        function updateCountdown() {
+            const weddingDate = new Date('October 25, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = weddingDate - now;
+            
+            if (timeLeft < 0) {
+                document.getElementById('countdown').innerHTML = '<div class="countdown-title">We\'re married! Thank you for celebrating with us!</div>';
+                return;
+            }
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             createHearts();
+            updateCountdown();
+            // Update countdown every second
+            setInterval(updateCountdown, 1000);
         });
     </script>
 </body>
